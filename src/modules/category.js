@@ -1,7 +1,14 @@
 import { v4 as uuidv4 } from "uuid";
 import { fetchCategories, storeCategories } from "../stores/categoryStore";
 
-const categoryList = fetchCategories();
+const categoryList = [];
+
+const reloadCategories = () => {
+  categoryList.splice(0, categoryList.length);
+  categoryList.push(...fetchCategories());
+};
+
+reloadCategories();
 
 const addCategory = ({ icon, title, color }) => {
   categoryList.push({
@@ -38,4 +45,4 @@ const removeCategory = (id) => {
   }
 };
 
-export { categoryList, addCategory, getCategory, modifyCategory, removeCategory };
+export { categoryList, reloadCategories, addCategory, getCategory, modifyCategory, removeCategory };

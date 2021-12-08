@@ -1,7 +1,14 @@
 import { v4 as uuidv4 } from "uuid";
 import { fetchEvents, storeEvents } from "../stores/eventStore";
 
-const eventList = fetchEvents();
+const eventList = [];
+
+const reloadEvents = () => {
+  eventList.splice(0, eventList.length);
+  eventList.push(...fetchEvents());
+};
+
+reloadEvents();
 
 const getDurationMinutes = ({ beginDate, beginTime, endDate, endTime }) => {
   const beginDatetime = Date.parse(`${beginDate}T${beginTime}:00`);
@@ -62,4 +69,4 @@ const removeEvent = (id) => {
   }
 };
 
-export { eventList, addEvent, modifyEvent, removeEvent, getDurationString };
+export { eventList, reloadEvents, addEvent, modifyEvent, removeEvent, getDurationString };

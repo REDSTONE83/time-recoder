@@ -8,6 +8,7 @@
     "deploy": "node deploy.js"
   },
   "dependencies": {
+    "axios": "^0.24.0",
     "uuid": "^8.3.2",
     "vue": "^2.6.11",
     "vuetify": "^2.4.0"
