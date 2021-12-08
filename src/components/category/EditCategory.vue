@@ -36,7 +36,6 @@
             validate-on-blur
             label="Icon"
             required
-            autofocus
           >
             <template v-slot:item="{ item }">
               <v-icon v-text="item.value"></v-icon>

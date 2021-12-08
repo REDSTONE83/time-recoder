@@ -77,9 +77,13 @@ export default {
           date = { date: event.beginDate, events: [] };
           dateEvents.push(date);
         }
+
+        const { icon, color } = getCategory(event.category);
+
         date.events.push({
           ...event,
-          ...getCategory(event.category),
+          icon,
+          color,
         });
       });
 

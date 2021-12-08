@@ -23,7 +23,6 @@
             validate-on-blur
             label="Category"
             required
-            autofocus
           >
             <template v-slot:item="{ item }">
               <v-icon v-text="item.icon"></v-icon>
