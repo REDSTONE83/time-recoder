@@ -1,4 +1,4 @@
-import { LOCAL_STORAGE_KEY } from "./const";
+import { LOCAL_STORAGE_KEY } from "./_const";
 
 const EVENT_STORAGE_KEY = LOCAL_STORAGE_KEY + "_EVENT";
 const fetchEvents = () => {

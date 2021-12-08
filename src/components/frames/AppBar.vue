@@ -3,10 +3,7 @@
     <v-app-bar-nav-icon @click="emitClickNav"></v-app-bar-nav-icon>
     <v-toolbar-title>Time Recorder</v-toolbar-title>
     <template v-slot:extension>
-      <v-tabs grow center-active centered>
-        <v-tab>Event</v-tab>
-        <v-tab>Category</v-tab>
-      </v-tabs>
+      <slot />
     </template>
   </v-app-bar>
 </template>

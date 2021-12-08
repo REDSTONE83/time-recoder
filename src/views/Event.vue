@@ -1,11 +1,17 @@
 <template>
-  <v-container>
+  <v-container class="v-container--board">
     <v-slide-x-transition group>
       <v-card-text class="py-0" v-for="date in dates" :key="date.date">
         <div class="text-subtitle-1">{{ date.date }}</div>
         <v-timeline align-top dense>
           <v-slide-x-transition group>
-            <v-timeline-item color="primary" small v-for="event in date.events" :key="event.id">
+            <v-timeline-item
+              :color="event.color"
+              :icon="event.icon"
+              fill-dot
+              v-for="event in date.events"
+              :key="event.id"
+            >
               <v-row class="pt-1 flex-nowrap">
                 <v-col cols="3">
                   <strong>{{ event.beginTime }}</strong>
@@ -44,6 +50,7 @@
 import AddEvent from "../components/event/AddEvent.vue";
 import ModifyEvent from "../components/event/ModifyEvent.vue";
 import { eventList, getDurationString } from "../modules/event";
+import { getCategory } from "../modules/category";
 export default {
   filters: {
     getDurationString,
@@ -70,7 +77,10 @@ export default {
           date = { date: event.beginDate, events: [] };
           dateEvents.push(date);
         }
-        date.events.push(event);
+        date.events.push({
+          ...event,
+          ...getCategory(event.category),
+        });
       });
 
       return dateEvents;
@@ -105,5 +115,8 @@ export default {
   bottom: 16px;
   left: 16px;
   z-index: 3;
+}
+.v-container--board {
+  min-height: calc(100vh - 104px);
 }
 </style>

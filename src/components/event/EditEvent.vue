@@ -14,6 +14,32 @@
     <v-form ref="form" class="mt-2" v-model="valid" lazy-validation>
       <v-row>
         <v-col>
+          <v-select
+            v-model="category"
+            :items="categoryList"
+            item-text="title"
+            item-value="id"
+            :rules="categoryRules"
+            validate-on-blur
+            label="Category"
+            required
+            autofocus
+          >
+            <template v-slot:item="{ item }">
+              <v-icon v-text="item.icon"></v-icon>
+              <span class="ml-2">{{ item.title }}</span>
+            </template>
+          </v-select>
+        </v-col>
+        <v-col cols="auto" class="d-flex align-center">
+          <v-avatar :color="categoryInfo.color" size="38">
+            <v-icon v-text="categoryInfo.icon" dark></v-icon>
+          </v-avatar>
+        </v-col>
+      </v-row>
+
+      <v-row>
+        <v-col>
           <v-text-field
             v-model="summary"
             :counter="20"
@@ -140,17 +166,6 @@
           </v-dialog>
         </v-col>
       </v-row>
-
-      <!-- <v-row>
-        <v-col>
-          <v-text-field
-            v-model="category"
-            :counter="20"
-            label="Category"
-            required
-          ></v-text-field>
-        </v-col>
-      </v-row> -->
     </v-form>
 
     <v-row class="mt-2" v-if="sheetBtns.length > 0">
@@ -162,18 +177,21 @@
 </template>
 
 <script>
+import { categoryList, getCategory } from "../../modules/category";
 import { getDurationString } from "../../modules/event";
 export default {
   data: () => ({
     valid: true,
     summaryRules: [(v) => !!v || "Event summary is required"],
+    categoryRules: [(v) => !!v || "Event category is required"],
+    categoryList,
 
+    category: "",
     summary: "",
     beginDate: "",
     beginTime: "",
     endDate: "",
     endTime: "",
-    category: "",
 
     beginDateMenu: false,
     beginTimeMenu: false,
@@ -186,6 +204,9 @@ export default {
   computed: {
     duration() {
       return getDurationString(this);
+    },
+    categoryInfo() {
+      return getCategory(this.category) || {};
     },
   },
   methods: {
