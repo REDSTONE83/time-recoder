@@ -9,7 +9,7 @@
             {{ date.dateString }}
           </v-card-title>
           <v-card-subtitle v-if="date.summary">
-            {{ date.summary }}
+            <pre>{{ date.summary }}</pre>
           </v-card-subtitle>
           <v-card-actions>
             <v-btn icon @click="showDetailDate = showDetailDate === date.date ? '' : date.date">
