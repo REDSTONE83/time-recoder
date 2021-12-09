@@ -1,5 +1,6 @@
 <template>
   <v-container class="v-container--board">
+    <v-btn block outlined large color="primary" class="mb-4" @click="openAddCategorySheet">Add New Category</v-btn>
     <v-list-item v-for="category in categoryList" :key="category.id">
       <v-list-item-icon>
         <v-avatar :color="category.color" size="38">
@@ -21,10 +22,6 @@
     </v-list-item>
 
     <span v-if="categoryList.length === 0">No Categories.</span>
-
-    <v-btn class="v-btn--action" fab dark color="indigo" @click="openAddCategorySheet">
-      <v-icon dark> mdi-plus </v-icon>
-    </v-btn>
 
     <v-bottom-sheet v-model="addCategory" eager>
       <AddCategory ref="addCategory" @close="closeAddCategorySheet" />
