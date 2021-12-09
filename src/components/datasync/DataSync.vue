@@ -47,8 +47,10 @@
 import Axios from "axios";
 import { fetchEvents, storeEvents } from "../../stores/eventStore";
 import { fetchCategories, storeCategories } from "../../stores/categoryStore";
+import { fetchDates, storeDates } from "../../stores/dateStore";
 import { reloadEvents } from "../../modules/event";
 import { reloadCategories } from "../../modules/category";
+import { reloadDates } from "../../modules/date";
 
 export default {
   data: () => ({
@@ -62,12 +64,14 @@ export default {
       })
         .then((res) => {
           const { data } = res;
-          const { events, categories } = data;
-          if (events && categories) {
+          const { events, categories, dates } = data;
+          if (events && categories && dates) {
             storeCategories(categories);
             storeEvents(events);
+            storeDates(dates);
             reloadCategories();
             reloadEvents();
+            reloadDates();
           } else {
             alert("REQUEST LOAD DATA IS FINISHED BUT WRONG FORMAT");
           }
@@ -80,6 +84,7 @@ export default {
       const data = {
         events: fetchEvents(),
         categories: fetchCategories(),
+        dates: fetchDates(),
       };
 
       Axios.post(`api/data/${this.id}`, data, {

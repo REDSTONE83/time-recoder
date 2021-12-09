@@ -12,7 +12,7 @@
             {{ date.summary }}
           </v-card-subtitle>
           <v-card-actions>
-            <v-btn icon @click="showDetailDate = date.date">
+            <v-btn icon @click="showDetailDate = showDetailDate === date.date ? '' : date.date">
               <v-icon>{{ showDetailDate === date.date ? "mdi-chevron-up" : "mdi-chevron-down" }}</v-icon>
             </v-btn>
 

@@ -1,6 +1,6 @@
 import { LOCAL_STORAGE_KEY } from "./_const";
 
-const DATE_STORAGE_KEY = LOCAL_STORAGE_KEY + "_EVENT";
+const DATE_STORAGE_KEY = LOCAL_STORAGE_KEY + "_DATE";
 
 const fetchDatesRaw = () => {
   return localStorage.getItem(DATE_STORAGE_KEY) || "[]";

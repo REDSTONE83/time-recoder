@@ -22,7 +22,7 @@ const addCategory = ({ icon, title, color }) => {
 };
 
 const getCategory = (id) => {
-  return categoryList.find((category) => category.id === id);
+  return categoryList.find((category) => category.id === id) || {};
 };
 
 const modifyCategory = ({ id, icon, title, color }) => {
