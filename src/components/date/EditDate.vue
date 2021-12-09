@@ -50,6 +50,7 @@ export default {
   methods: {
     setTargetDate({ date, dateString }) {
       this.date = date;
+      this.summary = "";
       this.sheetTitle = dateString;
     },
     emitClose() {
