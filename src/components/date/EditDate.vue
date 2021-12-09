@@ -48,9 +48,9 @@ export default {
     });
   },
   methods: {
-    setTargetDate({ date, dateString }) {
+    setTargetDate({ date, dateString, summary }) {
       this.date = date;
-      this.summary = "";
+      this.summary = summary;
       this.sheetTitle = dateString;
     },
     emitClose() {
