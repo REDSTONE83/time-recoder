@@ -8,7 +8,7 @@
           <v-card-title>
             {{ date.dateString }}
           </v-card-title>
-          <v-card-subtitle v-if="date.summary">
+          <v-card-subtitle v-if="date.summary" class="mt-0">
             <pre class="date-summary">{{ date.summary }}</pre>
           </v-card-subtitle>
           <v-card-actions>
@@ -180,5 +180,6 @@ export default {
 }
 .date-summary {
   white-space: pre-wrap;
+  font-family: "Roboto", sans-serif;
 }
 </style>
